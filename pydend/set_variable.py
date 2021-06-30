@@ -46,6 +46,7 @@ time_array = np.arange(dt, cond_dict['CALC_TIME'] + dt, dt)
 end_time = cond_dict['CALC_TIME']
 # 温度を初期化
 temp_m = cond_dict['TEMP_M']
+end_temp_m = cond_dict['END_TEMP']
 temp = temp_m
 temp_l = temp_m
 

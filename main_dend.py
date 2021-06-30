@@ -20,6 +20,7 @@ def before_solidification_process(time):
 def after_solidification_process():
     """
     凝固完了
+    終了温度になったら等温保持
     """
     sv.solid_interface_cell = int(sv.comp_array_length)
     sbr.solve_diffusion(sv.temp)
@@ -34,6 +35,7 @@ def main():
             before_solidification_process(time)
         else:
             after_solidification_process()
+            print(sv.temp)
         export_result(time, export_dirname)
 
 

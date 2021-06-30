@@ -47,7 +47,10 @@ def update_temp():
     """
     冷却速度から温度を更新
     """
-    sv.temp = sv.temp - sv.cooling_rate * sv.dt
+    if sv.temp > sv.end_temp_m:
+        sv.temp = sv.temp - sv.cooling_rate * sv.dt
+    else:
+        sv.temp=sv.end_temp_m
     return sv.temp
 
 
@@ -61,9 +64,9 @@ def update_interface_cell():
 
 def is_complete_solidification():
     """
-    固相率が0.98以上になったら凝固完了とする
+    固相率が0.9以上になったら凝固完了とする
     """
     sol_fraction, _ = slv.LocalEquilibrium.calc_phase_fraction(sv.solid_interface_cell, sv.x_array)
-    judge = sol_fraction >= 0.98
+    judge = sol_fraction >= 0.9
     return judge
 
